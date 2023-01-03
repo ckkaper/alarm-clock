@@ -1,0 +1,7 @@
+{
+  "name": "interview-repo-2",
+  "version": "1.0.0",
+  "description": "a global alarm service",
+  "main": "index.js",
+  "license": "MIT"
+}
