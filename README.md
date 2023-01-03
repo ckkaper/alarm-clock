@@ -18,8 +18,7 @@ Request
     {
         alarmName: string
         alarmWebhook: string
-        alarmTime: string
-        alarmTimeZone: string
+        alarmTimeStamp: string
     }
 
 Response
@@ -60,7 +59,6 @@ Response
         response of updated alarms
 ```
 
-- How the timestamp will be stored and converted
-    + timezone and time
-- Achieve global aware clock 
-    + if the client switches timezone should make an update call with his new timezone and update all the clock entries
+- Storing the date time format:
+    + the client from whenever he is will send the alarm timestamp along with the utc offset in this format: `1997-07-16T19:20+01:00` and the server will store it in UTC
+    + If the client changes location or timezone/offset in that case an update call will be sent to all the alarms of the users to calculate the new UTC based on the new offset
