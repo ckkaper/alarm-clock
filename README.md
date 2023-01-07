@@ -56,7 +56,7 @@ Response
 Update Alarms
 ```
 Request
-    PUT /alarms
+    PUT /alarm
 Response
     200
         response of updated alarms
