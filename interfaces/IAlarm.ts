@@ -3,5 +3,5 @@ export interface IAlarm {
     alarmName: string;
     webHook: string;
     alarmTimestamp: string;
-    timestampOffset: string;
+    timeZoneOffset: number;
 }

@@ -12,6 +12,11 @@ export const validateAlarm = (alarm: IAlarm): boolean => {
     if (alarmExists !== undefined) {
         return false;
     }
+    console.log(alarm);
+
+    if (isNaN(alarm.timeZoneOffset)) {
+        return false;
+    }
 
     if (alarm.alarmOwner == null || alarm.alarmTimestamp == null ) {
         return false;
