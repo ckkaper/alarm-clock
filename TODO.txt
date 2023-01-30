@@ -1,0 +1,24 @@
+1. Complete the CRUD operations
+    - Complete POST
+    - Complete PUT  
+        - corner cases: 
+            - Update alarm when in same timezone
+            - Update alarm when in a different timezone than the timezone the alart was set
+
+# Brainstorming
+    Client data:
+        - What the date format will be
+        ?? 2023-01-30T04:04:47.668Z
+        ?? timezoneOffset to the form of "+2:00"
+        - how the server will read these values and generate the result 
+        ?? convert the date to unix epoch
+        ?? use date.getTime(); to do that
+        ?? and if that time is in the range of 30 secs between now and the next 30 minutes generate the alarm
+        - in case of timezone update, how the server will calculate and store the value of the new updated timezones
+        + convert the store time in epoch, 
+        + in order to calculate the new alartm time:
+            + get the utc epoch, by substracting or adding the original offset
+            + apply the new offset to that epoch 
+            + calculate the alarmTimeStamp and store it
+    Server data: 
+        - How the server will store the date
