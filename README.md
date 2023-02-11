@@ -12,7 +12,15 @@ Create a global webhook alarm microservice. The service will serve as an API for
 - The system should be designed for high availability.
 
 # Solution
-- Create an express server with the following authorized API calls
+
+#### Timezone Handling
+The Server will recieve an alarm entry with the required timezone and the respective offset of the user's location.
+The server will have a cronjob that will run every 30 seconds and call a webhook if there was any alarm configured during the previous 35 seconds.
+The server will convert all timezones to UTC. The webhook formula will be checkWithinThirtyFiveSeconds -> ConvertToUtc(alarmTimestamp, serverOffset, usersOffset) => alarmTimestamp + userOffset + serverOffset.
+
+#### API Solution
+Create an express server with the following authorized API calls
+
 Create alarm
 ```
 Request

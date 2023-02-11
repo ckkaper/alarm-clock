@@ -11,9 +11,12 @@ alarmRouter.post("/alarm", (req, res, next) => {
     
     const alarmToCreate: IAlarm = req.body;
 
-    const createdAlarm = createAlarm(alarmToCreate);
+    if (Object.keys(req.body).length < 1) {
+        res.status(400).send("Invalid request");
+    }
 
-    // validateAlarm 
+    const createdAlarm = createAlarm(res, alarmToCreate);
+
     res.send({ createdAlarm });
 });
 
@@ -26,15 +29,15 @@ alarmRouter.get("/alarms", (req, res, next) => {
 alarmRouter.put("/alarm", (req, res, next) => {
     const alarmToUpdate = req.body;
 
-    const updatedAlarm = updateAlarm(alarmToUpdate);
+    const updatedAlarm = updateAlarm(res, alarmToUpdate);
 
     res.send({updatedAlarm})
 });
 
-alarmRouter.delete("/alarm/:alarmId", (req, res, next) => {
-    const alarmToDelete = req.params.alarmId;
+alarmRouter.delete("/alarm/:alarmName", (req, res, next) => {
+    const alarmToDelete = req.params.alarmName;
 
-    const result = deleteAlarm(alarmToDelete);
+    const result = deleteAlarm(res, alarmToDelete);
 
     res.send(result);
 });

@@ -2,7 +2,11 @@ import { IAlarm } from "../interfaces/IAlarm";
 import { alarmStore } from "../storage/alarmStorage";
 import { validateAlarm } from "../utils/alarmValidator";
 
-    const createAlarm = (alarm: IAlarm): IAlarm => {
+    const createAlarm = (res: any, alarm: IAlarm): IAlarm => {
+
+        if (!validateAlarm(alarm)) {
+            res.status(400).send("Invalid alarm");
+        }
 
         alarmStore.push(alarm);
         return alarm;
@@ -12,7 +16,7 @@ import { validateAlarm } from "../utils/alarmValidator";
         return alarmStore;
     }
 
-    const updateAlarm = (alarm: IAlarm): IAlarm => { 
+    const updateAlarm = (res: any, alarm: IAlarm): IAlarm => { 
         
         validateAlarm(alarm);
 
@@ -20,6 +24,7 @@ import { validateAlarm } from "../utils/alarmValidator";
         console.log(index);
 
         if (index < 0) {
+            res.status(404).send("Item not found");
             new Error("item not found to update");
         }
 
@@ -29,11 +34,12 @@ import { validateAlarm } from "../utils/alarmValidator";
         return alarm; 
     }
 
-    const deleteAlarm = (alarmName: string): boolean => {
+    const deleteAlarm = (res: any, alarmName: string): boolean => {
         
         const index = alarmStore.findIndex((a) => a.alarmName == alarmName);
 
         if (index < 0) {
+            res.status(404).status("Item not found");
             new Error("item not found to update");
         }
 

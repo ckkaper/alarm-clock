@@ -22,3 +22,12 @@
             + calculate the alarmTimeStamp and store it
     Server data: 
         - How the server will store the date
+
+
+
+
+
+# Notes
+- Moment
+- Luxon
+- Lodash 
