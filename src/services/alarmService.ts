@@ -1,12 +1,19 @@
 import { IAlarm } from "../interfaces/IAlarm";
 import { alarmStore } from "../storage/alarmStorage";
 import { validateAlarm } from "../utils/alarmValidator";
+import { convertToUTC } from "../utils/timeUtils";
 
     const createAlarm = (res: any, alarm: IAlarm): IAlarm => {
 
         if (!validateAlarm(alarm)) {
             res.status(400).send("Invalid alarm");
         }
+        console.log('#### test ####');
+        var utc = convertToUTC(alarm.alarmTimestamp, alarm.timeZoneOffset);
+        console.log(utc);
+
+
+        console.log('#### end test ####');
 
         alarmStore.push(alarm);
         return alarm;
