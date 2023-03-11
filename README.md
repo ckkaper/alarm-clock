@@ -72,6 +72,6 @@ Response
 ```
 
 - Storing the date time format:
-    + the client from whenever he is will send the alarm timestamp along with the utc offset in this format: `1997-07-16T19:20+01:00` and the server will store it in UTC
-    + If the client changes location or timezone/offset in that case an update call will be sent to all the alarms of the users to calculate the new UTC based on the new offset
+    + the client from whenever he is will send the alarm timestamp along with the utc offset in this format: `1997-07-16T19:20` and the server will store it in UTC
+    + If the client changes location or timezone/offset in that case an update call will be sent to all the alarms of the user to calculate the new UTC based on the new offset
         + Update: get the new timezone 

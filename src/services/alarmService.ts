@@ -6,14 +6,9 @@ import { convertToUTC } from "../utils/timeUtils";
     const createAlarm = (res: any, alarm: IAlarm): IAlarm => {
 
         if (!validateAlarm(alarm)) {
-            res.status(400).send("Invalid alarm");
+            return res.status(400).send("Invalid alarm");
         }
-        console.log('#### test ####');
         var utc = convertToUTC(alarm.alarmTimestamp, alarm.timeZoneOffset);
-        console.log(utc);
-
-
-        console.log('#### end test ####');
 
         alarmStore.push(alarm);
         return alarm;
@@ -28,7 +23,6 @@ import { convertToUTC } from "../utils/timeUtils";
         validateAlarm(alarm);
 
         const index = alarmStore.findIndex((a) => a.alarmName === alarm.alarmName);
-        console.log(index);
 
         if (index < 0) {
             res.status(404).send("Item not found");
